@@ -5,41 +5,82 @@ Description
 
 This is a web application for a fictional coffee shop called "World Coffee". The app allows users to view available coffee products, add items to the shopping cart, and update their user information.
 
-Technologies Used
+## Technologies Used
 
-Flask: Python web framework for creating the backend of the application.
-Flask-SQLAlchemy: Flask extension for integration with SQLAlchemy database.
-PostgreSQL: Relational database management system used to store application data.
-HTML/CSS: For the structure and styling of web pages.
-JavaScript: For interactivity in the user interface.
-Key Features
+**Frontend:**
+- HTML
+- CSS
+- JavaScript
 
-Product Viewing: Users can browse the product page to see different types of coffee available, along with their prices and images.
-Add to Cart: Users can add products to the shopping cart by clicking the "Add to Cart" button on the product page.
-User Information Update: Users can update their user information, such as username, email, and password, through the profile page.
-Cart Viewing: Users can view the items currently in the shopping cart on the cart page.
-Installation and Execution
+**Database:**
+- PostgreSQL
 
-Setting up the Virtual Environment (optional):
+**Backend:**
+- Python (Flask framework)
+- Flask-WTF (for web forms)
+- Flask-SQLAlchemy (for SQL database integration in Flask)
+- Werkzeug (for password security and hashing)
+- Flask Blueprints (for modularizing and organizing the code)
 
-Create a Python virtual environment using virtualenv or venv.
-Activate the virtual environment.
-Installing Dependencies:
+## Getting Started
 
-Install the application dependencies using the requirements.txt file with the command pip install -r requirements.txt.
-Database Configuration:
+To run the World Coffee E-Commerce website locally, follow these steps:
 
-Set up a PostgreSQL database.
-Change the SQLALCHEMY_DATABASE_URI variable in the app.py file to reflect the connection to the database.
-Running the Application:
+1. **Clone the Repository:**
 
-Run the app.py file to start the Flask server.
-Access the application in a web browser, typically at http://localhost:5000.
-Contribution
+   Clone the repository to your local machine using the following command:
 
-Contributions are welcome! Feel free to open issues or submit pull requests for improvements.
+   ```bash
+   git clone https://github.com/EduardoAFdeZanetti/worldcoffee.git
 
-License
+2. Install the Necessary Dependencies:
+Navigate to the project directory and install the required dependencies by running:
 
-This project is licensed under the MIT License.
+pip install -r requirements.txt
 
+3. Navigate to the Project Directory:
+Change to the project directory using:
+
+cd worldcoffee
+
+4. Create and Activate a Virtual Environment:
+
+python -m venv venv
+
+5. Activate the virtual environment:
+ - On Windows:
+    venv\Scripts\activate
+
+ - On macOS and Linux:
+    source venv/bin/activate
+
+5. Run the Flask Application:
+Start the Flask application with:
+
+python app.py
+
+6. Access the Website in Your Browser:
+Open your browser and navigate to http://localhost:8080 to view the website.
+
+## Using Gunicorn (Production)
+
+For deploying the application in a production environment using Gunicorn on localhost port 8080:
+
+gunicorn -b 0.0.0.0:8080 app:app
+
+Access the application at http://localhost:8080.
+
+Notes
+
+- Ensure you are using a virtual environment (virtualenv) to avoid dependency conflicts. Follow the steps above to set up and activate your virtual environment.
+- The application should be tested locally before deploying to a production environment.
+
+## Live Demo
+
+You can see a live demo of the website at the following link:
+
+Render: World Coffee E-Commerce on Render 
+
+## Images Source
+
+The images used in this project are sourced from various royalty-free image providers, including Vecteezy.
