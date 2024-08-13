@@ -1,0 +1,14 @@
+# System files
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Python cache
+__pycache__/
+
+# Static files (if not needed in the repository)
+static/.DS_Store
+
+# Virtual environment
+venv/
