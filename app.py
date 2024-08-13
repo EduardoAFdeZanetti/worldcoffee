@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from email_validator import validate_email, EmailNotValidError
 import os
 
 app = Flask(__name__)
@@ -67,6 +69,35 @@ def update_user(user_id):
     user.username = request.form['username']
     user.email = request.form['email']
     user.password = request.form['password']
+    db.session.commit()
+    return jsonify({'message': 'User updated successfully!'})
+
+@app.route('/patch_user/<int:user_id>', methods=['PATCH'])
+def patch_user(user_id):
+    user = User.query.get_or_404(user_id)
+    data = request.json
+    
+    if 'username' in data:
+        username = data['username']
+        if len(username) < 3:
+            abort(400, description="Username must be at least 3 characters long.")
+        user.username = username
+
+    if 'email' in data:
+        email = data['email']
+        try:
+            # Validate the email address
+            validate_email(email)
+            user.email = email
+        except EmailNotValidError as e:
+            abort(400, description=str(e))
+
+    if 'password' in data:
+        password = data['password']
+        if len(password) < 6:
+            abort(400, description="Password must be at least 6 characters long.")
+        user.password = generate_password_hash(password)
+
     db.session.commit()
     return jsonify({'message': 'User updated successfully!'})
 
